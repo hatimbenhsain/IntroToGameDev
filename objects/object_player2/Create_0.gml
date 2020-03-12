@@ -1,17 +1,21 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-image_xscale=1;	
-sprite_set_offset(sprite_player2_fall,0,0);
-sprite_set_offset(sprite_player2_jump,0,0);
-sprite_set_offset(sprite_player2_switching,0,0);
+event_inherited();
 
-jumpV=-10;
-vy=-15;
-vx=0;
-ax=0.5;
-xRes=0.2;
-maxVx=5;
-g=0.25;
+spriteFall=sprite_player2_fall;
+spriteJump=sprite_player2_jump;
+spriteSwitching=sprite_player2_switching;
+spriteDying=sprite_player2_dying;
+sprites[3]=spriteDying sprites[2]=spriteSwitching sprites[1]=spriteJump sprites[0]=spriteFall;
 
-dying=false;
+for(var i=0;i<array_length_1d(sprites);i++){
+	sprite_set_offset(sprites[i],0,0);
+}
+
+buttonLeft=vk_left;
+buttonRight=vk_right;
+buttonUp=vk_up;
+buttonDown=vk_down;
+
+scoreIndex=1;

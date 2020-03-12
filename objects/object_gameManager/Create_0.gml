@@ -15,11 +15,13 @@ show_debug_message("game manager created");
 pl1=instance_create_depth(room_width/4,room_height,0,object_player1);
 pl2=instance_create_depth(room_width*3/4,room_height,0,object_player2);
 
-global.score1=0;
-global.score2=0;
+scores[0]=0;
+scores[1]=0;
 
 draw_set_halign(fa_center);
 draw_set_font(font0);
+
+show_debug_message("still ok");
 
 /*application_surface_draw_enable(false);
 window_set_fullscreen(true);

@@ -28,7 +28,7 @@ if(instance_exists(object_player1) && pl1.y>=room_height*9/8){
 		instance_create_depth(pl1.x,room_height,-5,object_star);	
 	}
 	instance_destroy(pl1);
-	global.score1--;
+	scores[0]--;
 	audio_play_sound(sound_fall,1,false);
 }
 
@@ -38,7 +38,7 @@ if(instance_exists(object_player2) && pl2.y>=room_height*9/8){
 		instance_create_depth(pl2.x,room_height,-5,object_star);	
 	}
 	instance_destroy(pl2);
-	global.score2--;
+	scores[1]--;
 	audio_play_sound(sound_fall,1,false);
 }
 
