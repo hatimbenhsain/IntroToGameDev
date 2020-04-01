@@ -4,11 +4,14 @@ randomize();
 
 currentPlatforms=0;
 minPlatforms=5;
-maxPlatforms=30;
+maxPlatforms=10;
 platforms=[];
 
 platformFreq=50;
 frameNumber=0;
+
+recWidth=100;
+recHeight=5;
 
 show_debug_message("game manager created");
 
@@ -17,6 +20,9 @@ pl2=instance_create_depth(room_width*3/4,room_height,0,object_player2);
 
 scores[0]=0;
 scores[1]=0;
+
+hoverPoints[0]=0;
+hoverPoints[1]=0;
 
 draw_set_halign(fa_center);
 draw_set_font(font0);

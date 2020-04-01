@@ -8,6 +8,8 @@ show_debug_message(vx);
 x+=vx;
 vy+=g;
 
+object_gameManager.hoverPoints[scoreIndex]=hoverPoints;
+
 
 
 if(dying==false && keyboard_check(buttonLeft)){
@@ -17,7 +19,21 @@ if(dying==false && keyboard_check(buttonLeft)){
 }
 vx-=xRes*sign(vx);
 
+if(dying==false && keyboard_check(buttonUp) && hoverPoints>0){
+	if(hovering==false && vy>=0){
+		vy+=hoverAcc*initBoost;
+		hoverPoints-=initBoost;
+		hovering=true;
+	}else{
+		vy+=hoverAcc;
+		hoverPoints--;
+	}
+}else{
+	hovering=false;	
+}
 
+vx=clamp(vx,-maxVx,maxVx);
+vy=clamp(vy,maxVyUp,maxVyDown);
 
 if(vx>1){
 	image_xscale=1;	
@@ -60,9 +76,10 @@ if(vy>=0){
 				with(colWith){
 					dying=true;
 				}
-				object_gameManager.scores[scoreIndex]++;
+				object_gameManager.scores[scoreIndex]+=killScore;
 				audio_play_sound(sound_hit,1,false);
 				show_debug_message("player dead");
+				hoverPoints+=playerRefill
 				for(var i=0;i<8;i++){
 					instance_create_depth(x+sprite_width/2,y+sprite_height,-5,object_star);	
 				}
@@ -74,18 +91,22 @@ if(vy>=0){
 			if(dying==false && colWith!=noone){
 				if(place_meeting(x,y,colWith)==false && colWith.col==false){
 					audio_play_sound(sound_bounce,1,false);
+					object_gameManager.scores[scoreIndex]+=platformScore;
 					col=true;	
 					colWith.col=true;
+					hoverPoints+=platformRefill;
 				}
 			}
 		}
 		
 		if(col==true){
+			vy=clamp(vy,maxVyUp,maxVyDown);
 			y+=sy;
 			vy=jumpV;
 			break;
 		}
 		else{
+			vy=clamp(vy,maxVyUp,maxVyDown);
 			y+=sy;
 			yToMove-=sy;
 		}
@@ -95,7 +116,12 @@ if(vy>=0){
 		vy=0;	
 	}else{
 		sprite_index=spriteJump;
+		vy=clamp(vy,maxVyUp,maxVyDown);
 		y+=vy;
+		if(y<=0){
+			vy=-vy;	
+			audio_play_sound(sound_bounce,1,false);
+		}
 	}
 }
 
@@ -103,5 +129,7 @@ if(dying==true){
 	sprite_index=spriteDying;
 }
 
-vx=clamp(vx,-maxVx,maxVx);
+
+
+hoverPoints=clamp(hoverPoints,0,maxHover);
 

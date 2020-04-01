@@ -12,7 +12,23 @@ vx=tune.startVx;
 ax=tune.ax;
 xRes=tune.xRes;
 maxVx=tune.maxVx;
+maxVyUp=tune.maxVyUp;
+maxVyDown=tune.maxVyDown;
 g=tune.g;
+maxHover=tune.maxHover;
+hoverAcc=tune.hoverAcc;
+initBoost=tune.initBoost;
+
+platformScore=tune.platformScore;
+killScore=tune.killScore;
+dieScore=tune.dieScore
+
+hoverPoints=maxHover;
+platformRefill=maxHover/2;
+playerRefill=maxHover;
+
+hovering=false;
+
 
 instance_destroy(tune);
 
@@ -32,3 +48,5 @@ buttonUp=0;
 buttonDown=0;
 
 scoreIndex=0;
+
+instance_destroy(tune);
