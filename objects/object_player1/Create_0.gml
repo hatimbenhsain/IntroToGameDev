@@ -11,9 +11,17 @@ spriteSwitching=sprite_player1_switching;
 spriteDying=sprite_player1_dying;
 sprites[3]=spriteDying sprites[2]=spriteSwitching sprites[1]=spriteJump sprites[0]=spriteFall;
 
+fireSound=sound_fire1;
 
 for(var i=0;i<array_length_1d(sprites);i++){
 	sprite_set_offset(sprites[i],0,0);
+}
+
+if(x>=room_width/2){
+	image_xscale=-1;	
+	for(var i=0;i<array_length_1d(sprites);i++){
+		sprite_set_offset(sprites[i],-sprite_width,0);
+	}	
 }
 
 buttonLeft=ord("A");

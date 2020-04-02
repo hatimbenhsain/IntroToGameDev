@@ -7,6 +7,9 @@ show_debug_message(vx);
 
 x+=vx;
 vy+=g;
+if(keyboard_check(buttonDown) && dying==false){
+	vy+=g;	
+}
 
 object_gameManager.hoverPoints[scoreIndex]=hoverPoints;
 
@@ -24,11 +27,15 @@ if(dying==false && keyboard_check(buttonUp) && hoverPoints>0){
 		vy+=hoverAcc*initBoost;
 		hoverPoints-=initBoost;
 		hovering=true;
+		audio_sound_gain(fireSound,1,100);
 	}else{
 		vy+=hoverAcc;
 		hoverPoints--;
 	}
 }else{
+	if(hovering==true){
+		audio_sound_gain(fireSound,0,100);
+	}
 	hovering=false;	
 }
 
@@ -92,6 +99,7 @@ if(vy>=0){
 				if(place_meeting(x,y,colWith)==false && colWith.col==false){
 					audio_play_sound(sound_bounce,1,false);
 					object_gameManager.scores[scoreIndex]+=platformScore;
+					object_gameManager.aliensKilled++;
 					col=true;	
 					colWith.col=true;
 					hoverPoints+=platformRefill;

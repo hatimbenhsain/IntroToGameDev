@@ -1,6 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
-image_xscale=1;	
+image_xscale=1;
+depth=2;
 
 show_debug_message("creating a player");
 
@@ -29,6 +30,7 @@ playerRefill=maxHover;
 
 hovering=false;
 
+fireSound=sound_fire1;
 
 instance_destroy(tune);
 
@@ -48,5 +50,7 @@ buttonUp=0;
 buttonDown=0;
 
 scoreIndex=0;
+
+
 
 instance_destroy(tune);
